@@ -8,7 +8,7 @@ namespace Sorting
         {
             int[] array = new int[] { 7, 2, 9, 6, 4 };
             Traverse(array);
-            InsertionSort(array);
+            SelectionSort(array);
             Traverse(array);
         }
         // Bubble Sort Complexity of O(n^2)
@@ -38,7 +38,25 @@ namespace Sorting
                 }
             }
         }
-            static void Swap(ref int val1, ref int val2)
+
+        // Selection Sort Complexity of O(n^2)
+        static void SelectionSort(int[] arr)
+        {
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                int iMin = i;
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (arr[j] < arr[iMin])
+                    {
+                        iMin = j;
+                    }
+                }
+                Swap(ref arr[i], ref arr[iMin]);
+            }
+        }
+
+        static void Swap(ref int val1, ref int val2)
         {
             int temp = val1;
             val1 = val2;
