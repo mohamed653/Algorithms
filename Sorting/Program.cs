@@ -13,7 +13,8 @@ namespace Sorting
             //BubbleSort(array);
             //InsertionSort(array);
             //SelectionSort(array);
-            MergeSort(array,0,4);
+            //MergeSort(array,0,4);
+            QuickSort(array,0,4);
             Traverse(array);
         }
         // 1. Bubble Sort Complexity of O(n^2)
@@ -100,7 +101,51 @@ namespace Sorting
                 right--;
             }
         }
-      
+
+        // 5. Quick Sort Complexity of O(nLog(n))  better than merge sort *** Divide & Conquer ***
+        static void QuickSort(int[] arr, int left, int right)
+        {
+            int pivot;
+            if (left < right)
+            {
+                pivot = Partition(arr, left, right);
+                if (pivot > 1)
+                {
+                    QuickSort(arr, left, pivot - 1);
+                }
+                if (pivot + 1 < right)
+                {
+                    QuickSort(arr, pivot + 1, right);
+                }
+            }
+        }
+
+        static int Partition(int[] arr, int left, int right)
+        {
+            int pivot;
+            pivot = arr[left];
+            while (true)
+            {
+                while (arr[left] < pivot)
+                {
+                    left++;
+                }
+                while (arr[right] > pivot)
+                {
+                    right--;
+                }
+                if (left < right)
+                {
+                    int temp = arr[right];
+                    arr[right] = arr[left];
+                    arr[left] = temp;
+                }
+                else
+                {
+                    return right;
+                }
+            }
+        }
         static void Swap(ref int val1, ref int val2)
         {
             int temp = val1;
